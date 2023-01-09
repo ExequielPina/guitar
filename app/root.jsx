@@ -1,12 +1,7 @@
 
-
-
-import {
-    Meta,
-    Links
-} from '@remix-run/react'
-
-import styles from './styles/index.css'
+import { Meta, Links, Outlet } from '@remix-run/react'
+import Header from '~/components/header'
+import styles from '~/styles/index.css'
 
 export function meta () {
     return (
@@ -51,7 +46,7 @@ export function links() {
 export default function App() {
     return(
         <Document>
-            <h1>Hola</h1>
+            <Outlet />
         </Document>
     )
 }
@@ -66,6 +61,7 @@ function Document ({children}) {
             </head>
 
             <body>
+                <Header />
                 {children}
             </body>
         </html>
