@@ -4,6 +4,34 @@ import styles from '~/styles/guitarras.css'
 
 
 
+export async function loader ({params} ) {
+  const { urlGuitarra} = params   
+  const guitarra = await getGuitarra( urlGuitarra )
+
+  if(guitarra.data.length === 0) {
+    throw new Response('', {
+      status: 404,
+      statusText: 'Guitarra no encontrada'
+    })
+  }
+  
+  return guitarra
+}
+
+
+export function meta({data}) {
+  if(!data) {
+    return {
+      title: 'Error 404 Guitarra no encontrada',
+      description: 'Venta de guitarras- Guitarra no encontrada'
+    }
+  }
+  return {
+    title: `GuitarLA - ${data.data[0].attributes.modelo} ${data.data[0].attributes.marca}`,
+    description: `Venta de guitarras. ${data.data[0].attributes.marca}`
+  }
+}
+
 export function links() {
   return [
     {
@@ -14,14 +42,7 @@ export function links() {
 }
 
 
-export async function loader ({request, params} ) {
-  const { urlGuitarra} = params 
-  
-  const guitarra = await getGuitarra( urlGuitarra)
-  
 
-  return guitarra
-}
 
 
 

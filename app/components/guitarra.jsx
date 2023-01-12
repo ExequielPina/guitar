@@ -14,7 +14,7 @@ function Guitarra({guitarra}) {
             <h3>{marca}</h3>
             <p className="modelo">{modelo}</p>
             <p className="descripcion">{descripcion}</p>
-            <p className="precio">{precio}€</p>
+            <p className="precio">{precio} €</p>
             <Link className="enlace" to={`/guitarras/${url}`}>Ver producto </Link>
 
         </div>
